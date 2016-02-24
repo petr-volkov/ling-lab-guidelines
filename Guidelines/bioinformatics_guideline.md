@@ -137,8 +137,8 @@ Here is the short summary:
 - Don't use save, load, save.image or load.image for persistance. Use saveRDS or loadRDS instead.
 - Separate the scripts on the logical sections
 
-      # Load data ---------------------------
-      # Plot data ---------------------------
+      # Load data ---------------------------  
+      # Plot data ----------------------------
 
 - Reusable functions should be saved in Functions/ directory
 - Try to reduce OOP usage. Only use one OOP system in the project, preferably R6.
