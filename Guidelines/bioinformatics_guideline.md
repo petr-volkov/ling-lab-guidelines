@@ -179,8 +179,12 @@ Example:
 
     a\<-b
 
+##### *Package development* ######
 
-##### *Assignment operation* #####
+- Do not import packages in NAMESPACE file. Use namespaces intead: 
+        
+            packagename::function()
+
 
 ### Software recomendations ###
 
