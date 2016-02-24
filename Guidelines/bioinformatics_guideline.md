@@ -153,9 +153,9 @@ Here is the short summary:
 - All scripts should have '#!/usr/bin/env Rscript' shebang line.
 - If files need to be run in sequence, prefix them with numbers:
 
-      0-download.R
-      1-parse.R
-      2-explore.R
+        0-download.R
+        1-parse.R
+        2-explore.R
 
 ##### *Variable names* ######
 
