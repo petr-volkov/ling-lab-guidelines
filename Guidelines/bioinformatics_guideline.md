@@ -2,7 +2,7 @@
 
 This guidelines are loosely based upon:
 - [Bioinformatics zen](http://www.bioinformaticszen.com)
-- Excellent book ['Advanced R'](http://adv-r.had.co.nz/)
+- ['Advanced R'](http://adv-r.had.co.nz/)
 
 To work on bioinformatics projects, so that it doesn't become a complete mess, you should at least know (in any order):
 
