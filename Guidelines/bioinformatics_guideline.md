@@ -8,7 +8,7 @@ To work on bioinformatics projects, so that it doesn't become a complete mess, y
 
 - R
 - Linux command line basics [This, for example](http://linuxcommand.org/)
-- GNU Make
+- Snakemake
 - Git (and github)
 - Markdown for readme files
 
@@ -20,9 +20,9 @@ Good to know (descending order of importance, increasing order of difficulty):
 
 ### General ###
 
-- Always use Makefile to put pipelines together. It should be possible to recalcuate the whole project using the single makefile command. [Read more](http://www.bioinformaticszen.com/post/functional/)
-- Always use git.
-- All operations should be only executed on condor using 'csubmit.sh'. (TODO) this won't work with makefile. I'm writing a new script that will take care of this.
+- Always use Snakefile to put pipelines together. It should be possible to recalcuate the whole project using the single makefile command. [Read more](http://www.bioinformaticszen.com/post/functional/)
+- Al edits to the code should be commited to a git repository. Keep the commits small and simple.
+- All operations should be executed on condor using 'csubmit.sh', unless there is a good reason not to do so. 
 - All files should use LF endings. Set up your IDE accordingly.
 - All raw data should be softlinked from Raw_Data_Archive
 - No part of the analysis should be conducted in the R enterperer line or os command line (shell scripts are of course fine)
@@ -31,14 +31,14 @@ Good to know (descending order of importance, increasing order of difficulty):
 
 ### Git and remote repositories ###
 
-- Commit only project ./Scripts folder to the remote repo.
+- Never commit data files and patient information to the repository.
 - Be sure that scripts do not contain any sensitive patient data. Use private repository if have doubts.
 - Do not use git-lfs to store files other then scripts. It is important that patient-related files do not leave inner network.
 - Main "Scripts" folder should only be updated by 'git' commands. If you use any kind of automatic deployment for testing or development purposes, never deploy to the directory of the git repo. Create another directory instead.
 For example, if you work on "Scripts" directory and use automatic deployment, deploy to "ScriptDeployment" directory, not to "Scripts" itself.
 
 (TODO)
-*Think how to organize all github repos*
+*Think how to organize all bitbucket repos*
 *Probably use*
 
 ### Data ###
@@ -58,26 +58,24 @@ For example, if you work on "Scripts" directory and use automatic deployment, de
     Logs/
       CondorLogs/
       RoutFiles/
-    Persistance/
+    ProjectWorkspaces/
     Plots/
     QC/
     Results/
     RawData/
     Scripts/
     Temp/
-    Makefile
-    Readme.md
+    Snakefile
+  
 
 ##### General #####
 
-  - .RData files should always be saved to a Temp folder
   - Project root should be inside Active_Projects/Project_Name/Private/ . Soflink into your home if you will.
   - RawData/ is always softlinked, not copied, frow Raw_Data_Archive
   - If you start a new project, good chances it done before by someone. In this case, you can fork a project template from (TODO) the github repo.
 
 ##### Scripts directory #####
 
-- This project is always a git root
 - Each programming language used to perform the analysis should have a separate directory.
 - Scripts should be grouped by subdirectories based on script logic.
 - Each subdirectory should have a Readme.md file, which describes the logic the scripts are based upon, and what each script does
@@ -86,7 +84,6 @@ For example, if you work on "Scripts" directory and use automatic deployment, de
 Example:
 
       Scripts/
-        .git
         R/
           Analysis1/
             Subanalysis1/
@@ -105,14 +102,11 @@ Example:
         Haskell/
       .gitignore
 
-##### Persistance directory #####
+##### ProjectWorkspaces directory #####
 
-- Each persistance file type used to perform the analysis should have a separate directory:
-
-      Persistance/RData/
-      Persistance/Txt/
-      Persistance/Pickle/
-      Persistance/HDF5/
+- RData files are persisted in a ProjectWorkspaces directory
+      
+      
 
 ### File names ###
 
@@ -186,7 +180,3 @@ Example:
             packagename::function()
 
 
-### Software recomendations ###
-
-Why IDE is a personal choise, I need to notice that set of IDEs from Jetbrains is almost perfrect in every regard.
-I personally reccomend to use PyCharm IDE with R plugin installed. The main benefit is that it has an option of automatically deploy files to the Purple server.
